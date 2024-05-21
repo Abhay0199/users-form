@@ -32,7 +32,7 @@ const MainComponent = () => {
     return (
         <div className='container'>
             <h1>User and Address Management</h1>
-            <UserForm addUser={addUser} newuser={newuser} setUsers={setUsers} users={users} setEditIndex={setEditIndex} />
+            <UserForm addUser={addUser} newuser={newuser} setUsers={setUsers} users={users} setEditIndex={setEditIndex}  editIndex={editIndex}/>
             <UserList users={users} toggleStatus={toggleStatus} deleteAddress={deleteAddress} editAddress={editAddress} />
         </div>
     );
