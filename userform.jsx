@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const UserForm = ({ addUser, newuser, setUsers, users, setEditIndex }) => {
+const UserForm = ({ addUser, newuser, setUsers, users, setEditIndex,editIndex }) => {
 
     const [user, setUser] = useState({ name: '', age: '', addresses: [] });
     const [address, setAddress] = useState({
@@ -10,8 +10,7 @@ const UserForm = ({ addUser, newuser, setUsers, users, setEditIndex }) => {
         country: '',
         status: 'invalid'
     });
-    const [editIndex, setLocalEditIndex] = useState(null);
-    const [editUserIndex, setEditUserIndex] = useState(null);
+    
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
@@ -28,7 +27,7 @@ const UserForm = ({ addUser, newuser, setUsers, users, setEditIndex }) => {
                 country: newuser.addressIndex.country,
                 status: newuser.addressIndex.status
             });
-            setLocalEditIndex(newuser.addressIndex);
+           
             setEditIndex(newuser.userIndex);
         }
     }, [newuser]);
@@ -53,7 +52,7 @@ const UserForm = ({ addUser, newuser, setUsers, users, setEditIndex }) => {
         const newAddress = { ...address };
         if (editIndex !== null) {
             user.addresses[editIndex] = newAddress;
-            setLocalEditIndex(null);
+            
         } else {
             user.addresses.push(newAddress);
         }
@@ -71,8 +70,7 @@ const UserForm = ({ addUser, newuser, setUsers, users, setEditIndex }) => {
         if (validateUser() && validateAddress()) {
             if (editIndex !== null) {
                 const updatedUsers = [...users];
-                updatedUsers[editUserIndex] = newuser;
-                console.log(updatedUsers)
+                updatedUsers[editIndex] = newuser;
                 setUsers(updatedUsers);
                 setEditIndex(null);
             } else {
